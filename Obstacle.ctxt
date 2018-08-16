@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Obstacle
+comment1.params=xp\ yp\ wid\ hei
+comment1.target=Obstacle(double,\ double,\ double,\ double)
+comment2.params=bot\ top\ spd\ xOrY\ upOrDown
+comment2.target=void\ setMovement(double,\ double,\ double,\ boolean,\ int)
+comment3.params=
+comment3.target=void\ move()
+numComments=4
