@@ -28,14 +28,15 @@ import java.awt.event.KeyListener;
 
 public class Game{
   double mX, mY;
-    boolean win,gameover;
+	boolean win,gameover;
+	Obstacle[] obst;
 
   public static void main(String[] args){
-    //play game
-    new Game().play();
-  } 
-    public Game(){
-    StdDraw.setCanvasSize(1920,1080);
+  	//play game
+  	new Game().play();
+  }	
+	public Game(){
+  	StdDraw.setCanvasSize(1920,1080);
         StdDraw.setXscale(0,1920);
         StdDraw.setYscale(0,1080);
         StdDraw.setPenRadius(0.0005);
@@ -44,39 +45,48 @@ public class Game{
         StdDraw.enableDoubleBuffering();
   }
   public void play(){
-    draw();
+  	draw();
     init();
-    
     while(1==1){
-        update();
+  		update();
     }
   }
   public void draw()
   {
-        StdDraw.clear();
-        StdDraw.setPenRadius(0.15);
+  	StdDraw.clear();
+  			StdDraw.setPenRadius(0.15);
         StdDraw.setPenColor(StdDraw.BLUE);
         StdDraw.circle(mX,mY,1.0);
         StdDraw.show();
-
+		for (int i =0;i<2;i++){
+    	obst[i].paint();
+    }
   }
- 
   public void init(){
-    mX = 0;
+  	mX = 0;
     mY = 0;
     win = false;
     gameover = false;
+    obst = new Obstacle[2];
+    obst[0]=new Obstacle(320,600,20, 300);
+    obst[1] = new Obstacle(640,300, 20, 300);
+    for (int i =0;i<2;i++){
+    	obst[i].setMovement(200,800,20, true,-1);
+    }
   }
   public void update(){
     mX=StdDraw.mouseX();
     mY=StdDraw.mouseY();
     if(!gameover){
-        checkCollision();
+    	checkCollision();
+      for(Obstacle obj: obst){
+         obj.move();
+      }
     }
     draw();
   }
   public void checkCollision(){
-    //if player collide with other stuff then gameover
+  	//if player collide with other stuff then gameover
     
   }
 }
