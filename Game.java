@@ -46,6 +46,7 @@ public class Game{
   public void play(){
     draw();
     init();
+    
     while(1==1){
         update();
     }
@@ -59,14 +60,7 @@ public class Game{
         StdDraw.show();
 
   }
-  public void updateDraw()
-  {
-    StdDraw.setPenRadius(0.15);
-        StdDraw.setPenColor(StdDraw.BLUE);
-        StdDraw.circle(mX,mY,1.0);
-        StdDraw.show();
-
-  }
+ 
   public void init(){
     mX = 0;
     mY = 0;

@@ -17,7 +17,16 @@ public class Obstacle{
         uOD=upOrDown;
         if(uOD>=0){uOD=1;}else{uOD=-1;}
     }
-
+    
+    public void paint()
+    {
+        StdDraw.clear();
+        StdDraw.setPenRadius(0.15);
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.filledRectangle(x,y,w,h);
+        StdDraw.show();
+    }
+    
     public void move(){
         if(moveX){
             x+=uOD*speed;
