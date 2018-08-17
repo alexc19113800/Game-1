@@ -54,14 +54,16 @@ public class Game{
   }
   public void draw()
   {
+      
     StdDraw.clear();
             StdDraw.setPenRadius(0.15);
         StdDraw.setPenColor(StdDraw.BLUE);
         StdDraw.circle(mX,mY,1.0);
-        StdDraw.show();
+       
     for (int i =0;i<2;i++){
         obst[i].paint();
     }
+     StdDraw.show();
   }
   public void init(){
     mX = 0;
@@ -72,12 +74,13 @@ public class Game{
     obst[0]=new Obstacle(320,600,20, 300);
     obst[1] = new Obstacle(640,300, 20, 300);
     for (int i =0;i<2;i++){
-        obst[i].setMovement(200,800,20, true,-1);
+        obst[i].setMovement(200,800,20, false,-1);
     }
   }
   public void update(){
     mX=StdDraw.mouseX();
     mY=StdDraw.mouseY();
+    
     if(!gameover){
         checkCollision();
       for(Obstacle obj: obst){

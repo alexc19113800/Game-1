@@ -20,11 +20,9 @@ public class Obstacle{
     
     public void paint()
     {
-        StdDraw.clear();
         StdDraw.setPenRadius(0.15);
         StdDraw.setPenColor(StdDraw.RED);
         StdDraw.filledRectangle(x,y,w,h);
-        StdDraw.show();
     }
     
     public void move(){
