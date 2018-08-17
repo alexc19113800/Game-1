@@ -10,4 +10,6 @@ comment4.params=
 comment4.target=void\ move()
 comment5.params=xpos\ ypos
 comment5.target=boolean\ isInside(double,\ double)
-numComments=6
+comment6.params=px\ py\ cx\ cy
+comment6.target=boolean\ passedThrough(double,\ double,\ double,\ double)
+numComments=7

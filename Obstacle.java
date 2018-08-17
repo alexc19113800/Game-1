@@ -43,8 +43,20 @@ public class Obstacle{
         }
     }
     public boolean isInside(double xpos, double ypos){
-        if(xpos > x-w &&xpos < x+w && ypos  > y-h &&ypos < y+h){
+        if(xpos > x-w &&xpos < x+w && ypos > y-h &&ypos < y+h){
             return true;
+        }
+        return false;
+    }
+    public boolean passedThrough(double px, double py, double cx, double cy){
+        if(px > x-w &&px < x+w && cx > x-w &&cx < x+w){
+            if(py<y-h&&cy>y+h||cy<y-h&&py>y+h){
+                return true;
+            }
+        }else if(py > y-h &&py < y+h&&cy > y-h &&cy < y+h){
+            if(px < x-w && cx > x+w || cx < x-w && px > x+w){
+                return true;
+            }
         }
         return false;
     }
