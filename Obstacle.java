@@ -42,4 +42,10 @@ public class Obstacle{
             }
         }
     }
+    public boolean isInside(double xpos, double ypos){
+        if(xpos > x-w &&xpos < x+w && ypos  > y-h &&ypos < y+h){
+            return true;
+        }
+        return false;
+    }
 }

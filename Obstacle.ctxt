@@ -8,4 +8,6 @@ comment3.params=
 comment3.target=void\ paint()
 comment4.params=
 comment4.target=void\ move()
-numComments=5
+comment5.params=xpos\ ypos
+comment5.target=boolean\ isInside(double,\ double)
+numComments=6

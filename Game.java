@@ -52,9 +52,7 @@ public class Game{
         update();
     }
   }
-  public void draw()
-  {
-      
+  public void draw(){  
     StdDraw.clear();
             StdDraw.setPenRadius(0.15);
         StdDraw.setPenColor(StdDraw.BLUE);
@@ -63,7 +61,6 @@ public class Game{
     for (int i =0;i<2;i++){
         obst[i].paint();
     }
-     StdDraw.show();
   }
   public void init(){
     mX = 0;
@@ -71,8 +68,8 @@ public class Game{
     win = false;
     gameover = false;
     obst = new Obstacle[2];
-    obst[0]=new Obstacle(320,600,20, 300);
-    obst[1] = new Obstacle(640,300, 20, 300);
+    obst[0]=new Obstacle(500,600,20, 300);
+    obst[1] = new Obstacle(1300,300, 20, 300);
     for (int i =0;i<2;i++){
         obst[i].setMovement(200,800,20, false,-1);
     }
@@ -82,15 +79,25 @@ public class Game{
     mY=StdDraw.mouseY();
     
     if(!gameover){
-        checkCollision();
       for(Obstacle obj: obst){
          obj.move();
       }
-    }
-    draw();
-  }
-  public void checkCollision(){
-    //if player collide with other stuff then gameover
+      checkPosition();
+    	draw();
+    }else if(win){
     
+    }else{
+  		
+    }
+    
+    StdDraw.show();
+  }
+  public void checkPosition(){
+    //if player collide with other stuff then gameover
+		    for(Obstacle obj: obst){
+        	if(obj.isInside(mX,mY)){
+          	gameover = true;
+          }
+        }
   }
 }
