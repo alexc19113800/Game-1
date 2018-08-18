@@ -81,8 +81,9 @@ public class Game{
     public void draw(){  
         StdDraw.clear();
         StdDraw.setPenRadius(0.15);
-        StdDraw.setPenColor(StdDraw.BLUE);
-        StdDraw.filledCircle(mX,mY,3.0);
+        //StdDraw.setPenColor(StdDraw.BLUE);
+        //StdDraw.filledCircle(mX,mY,3.0);
+        StdDraw.picture(mX,mY,"rsz_1airplane.png");
         StdDraw.setPenColor(StdDraw.GREEN);
         StdDraw.rectangle(1850,540,70,100);
 			
