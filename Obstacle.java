@@ -9,13 +9,12 @@ public class Obstacle{
         x=xp;y=yp;w=wid;h=hei;
     }
 
-    public void setMovement(double bot,double top, double spd, boolean xOrY,int upOrDown){
+    public void setMovement(double bot,double top, double spd, boolean xOrY,double upOrDown){
         movB=bot;
         movT=top;
         speed=spd;
         moveX=xOrY;//true=x
-        uOD=upOrDown;
-        if(uOD>=0){uOD=1;}else{uOD=-1;}
+        if(upOrDown>=0){uOD=1;}else{uOD=-1;}
     }
     
     public void paint()
@@ -59,5 +58,10 @@ public class Obstacle{
             }
         }
         return false;
+    }
+    public Obstacle copy(){
+        Obstacle temp = new Obstacle(x,y,w,h);
+        temp.setMovement(movB,movT,speed,moveX,uOD);
+        return temp;
     }
 }

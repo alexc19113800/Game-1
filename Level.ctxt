@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Level
+comment1.params=
+comment1.target=Level()
+comment2.params=obs
+comment2.target=void\ setObstacles(Obstacle[])
+comment3.params=obs
+comment3.target=void\ addObstacle(Obstacle)
+comment4.params=obs
+comment4.target=void\ addObstacle(Obstacle[])
+numComments=5
