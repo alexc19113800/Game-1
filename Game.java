@@ -20,7 +20,7 @@ public class Game{
         StdDraw.setYscale(0,1080);
         StdDraw.setPenRadius(0.0005);
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.setFont(new Font("Arial", Font.PLAIN, 30));
+        StdDraw.setFont(new Font("Arial", Font.PLAIN, 90));
         StdDraw.enableDoubleBuffering();
     }
 
@@ -40,14 +40,30 @@ public class Game{
         win = false;
         gameover = false;
         obst = new Obstacle[10];
-        obst[0]=new Obstacle(500,600,20, 300);
-        obst[1] = new Obstacle(1300,300, 20, 300);
-        for (int i =0;i<2;i++){
+        double initial_speed = 5;
+        double initial_x_obst_post = 220;
+        double initial_y_obst_post = 600;
+        double initial_wid_obst = 20;
+        double initial_hei_obst = 50;
+        obst[0] = new Obstacle(initial_x_obst_post,initial_y_obst_post,initial_wid_obst,initial_hei_obst);
+        obst[0].setMovement(200,800,initial_speed,false,-1);
+        //obst[0]=new Obstacle(500,600,20, 300);
+        //bst[1] = new Obstacle(1300,300, 20, 300);
+        /*for (int i =0;i<2;i++){
             obst[i].setMovement(200,800,20, false,-1);
         }
         for(int i = 2; i < 10; i++){
-        		obst[i] = new Obstacle(Math.random()*1200+200, Math.random()*800+100, 20, 300);
-        		obst[i].setMovement(200, 800, Math.random()*30+10, false,1);
+                obst[i] = new Obstacle(Math.random()*1200+200, Math.random()*800+100, 20, 300);
+                obst[i].setMovement(200, 800, Math.random()*30+10, false,1);
+        }*/
+        for(int i = 1; i<10; i++)
+        {
+            initial_speed += 2;
+            initial_x_obst_post += 150;
+            initial_y_obst_post += 100;
+            initial_hei_obst += 20;
+            obst[i] = new Obstacle(initial_x_obst_post,initial_y_obst_post,initial_wid_obst,initial_hei_obst);
+            obst[i].setMovement(200,800,initial_speed,false,1);
         }
         try{
             Robot r = new Robot();
@@ -58,7 +74,7 @@ public class Game{
     }
 
     public void update(){
-    		prevX = mX;
+            prevX = mX;
         prevY = mY;
         mX=StdDraw.mouseX();
         mY=StdDraw.mouseY()-20;
@@ -86,7 +102,9 @@ public class Game{
         StdDraw.picture(mX,mY,"rsz_1airplane.png");
         StdDraw.setPenColor(StdDraw.GREEN);
         StdDraw.rectangle(1850,540,70,100);
-			
+        StdDraw.picture(870,1020,"UFO.png");
+        StdDraw.picture(100,900,"UFO.png");
+        StdDraw.picture(1600,1100,"UFO.png");
 
         for (int i =0;i<obst.length;i++){
             obst[i].paint();
@@ -101,8 +119,20 @@ public class Game{
             }
           
         }
+        if(mX>100 && mX < 370 && mY>800 && mY < 1080){
+            gameover = true;
+          win = false;
+        }
+        if(mX>370 && mX < 1270 && mY>930 && mY < 1080){
+            gameover = true;
+          win = false;
+        }
+        if(mX>1270 && mX < 1920 && mY>1000 && mY < 1080){
+            gameover = true;
+          win = false;
+        }
         if(mX>1780 && mX < 1920 && mY>440 && mY < 640){
-        	gameover = true;
+            gameover = true;
           win = true;
         }
     }
