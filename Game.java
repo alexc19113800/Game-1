@@ -100,6 +100,8 @@ public class Game{
     public void play(){
         init();
         draw();
+        
+        music[0].start();
         while(1==1){
             update();
         }
