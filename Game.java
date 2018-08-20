@@ -63,7 +63,7 @@ public class Game{
         Obstacle[] temp = new Obstacle[10];
         for(int i = 0; i<10; i++)
         {
-            temp[i] = new Obstacle(Math.random()*1600+200,Math.random()*800,Math.random()*200+10,Math.random()*200+10);
+            temp[i] = new Obstacle(Math.random()*1600+400,Math.random()*800,Math.random()*200+10,Math.random()*200+10);
             boolean moveX = ran.nextBoolean();
             double dir = Math.random()*2-1;
             double low, high;
@@ -161,7 +161,7 @@ public class Game{
             }
 
         }
-        if(mX>100 && mX < 370 && mY>800 && mY < 1080){
+        if(mX>0 && mX < 370 && mY>800 && mY < 1080){
             gameover = true;
             win = false;
         }
@@ -185,10 +185,15 @@ public class Game{
             curlvl +=1;
             if(curlvl < levels.length){
                 loadLevel(levels[curlvl]);
+            }else{
+                levels = Arrays.copyOf(levels,levels.length+1);
+                levels[levels.length-1] = getRandomLevel();
+                if(curlvl < levels.length)
+                    loadLevel(levels[curlvl]);
             }
         }
         if(!(curlvl < levels.length)){
-            StdDraw.text(800,400, "YOU BEAT THE GAME!");
+            StdDraw.text(800,400, "Try Random Levels!");
         }else{
             StdDraw.text(200,200,"You Win!");
         }
@@ -209,5 +214,38 @@ public class Game{
         for(int i = 0; i < obst.length; i++){
             obst[i] = l.obst[i].copy();
         }
+    }
+    
+    public Level getRandomLevel(){
+        Random ran = new Random();
+        Obstacle[] temp = new Obstacle[10];
+        for(int i = 0; i<10; i++)
+        {
+            temp[i] = new Obstacle(Math.random()*1600+400,Math.random()*800,Math.random()*200+10,Math.random()*200+10);
+            boolean moveX = ran.nextBoolean();
+            double dir = Math.random()*2-1;
+            double low, high;
+            double speed = Math.random()*23+2;
+            if(moveX){
+                low = Math.random()*1600+200;
+                high = Math.random()*1600+200;
+            }else{
+                low = Math.random()*800;
+                high = Math.random()*800;
+            }
+            if(low > high){
+                high += low;
+                low = high-low;
+                high -= low;
+            }
+            if(high-low < 1000){
+                high += 100;
+                low -= 100;
+            }
+            temp[i].setMovement(low,high,speed,moveX,dir);
+        }
+        Level l = new Level();
+        l.setObstacles(temp);
+        return l;
     }
 }
