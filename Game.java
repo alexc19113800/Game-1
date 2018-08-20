@@ -10,13 +10,21 @@ public class Game{
     Obstacle[] obst;
     Level[] levels;
     int curlvl;
-
+    SoundClipTest[] music;
+    int curMusic;
+    
     public static void main(String[] args){
         //play game
         new Game().play();
     } 
 
     public Game(){
+        SoundClipTest mus = new SoundClipTest("audio/bg_music.wav", true);
+        SoundClipTest win = new SoundClipTest("audio/victory_music.wav", false);
+        SoundClipTest lose = new SoundClipTest("audio/losing_music.wav", false);
+        music = new SoundClipTest[]{mus,win,lose};
+        curMusic = 0;
+        
         StdDraw.setCanvasSize(1920,1080);
         StdDraw.setXscale(0,1920);
         StdDraw.setYscale(0,1080);
@@ -121,14 +129,29 @@ public class Game{
         mY=StdDraw.mouseY()-20;
 
         if(!gameover){
+            if(curMusic != 0){
+                music[curMusic].stop();
+                curMusic = 0;
+                music[curMusic].start();
+            }
             for(Obstacle obj: obst){
                 obj.move();
             }
             checkPosition();
             draw();
         }else if(win){
+            if(curMusic != 1){
+                music[curMusic].stop();
+                curMusic = 1;
+                music[curMusic].start();
+            }
             win();
         }else{
+            if(curMusic != 2){
+                music[curMusic].stop();
+                curMusic = 2;
+                music[curMusic].start();
+            }
             lose();
         }
 
