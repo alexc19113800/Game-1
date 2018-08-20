@@ -128,6 +128,11 @@ public class Game{
         mX=StdDraw.mouseX();
         mY=StdDraw.mouseY()-20;
 
+        if(StdDraw.isKeyPressed(83)){
+            gameover = true;
+            win = true;
+        }
+        
         if(!gameover){
             if(curMusic != 0){
                 music[curMusic].stop();
